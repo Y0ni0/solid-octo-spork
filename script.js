@@ -41,19 +41,29 @@ const getRelated = publisher => {
         }, 1500, publisher);
     });
 };
-
-getIDs
-.then(IDs => {
+/*
+    getIDs
+    .then(IDs => {
+        console.log(IDs);
+        return getrecipe(IDs[2]);
+    })
+    .then(recipe => {
+        console.log(recipe);
+        return getRelated('Yeabsira kassaye');
+    })
+    .then(recipe => {
+        console.log(recipe);
+    })
+    .catch(error => {
+        console.log('Error!');
+    });
+    */
+async function getrecipeAW(){
+    const IDs = await getIDs;
     console.log(IDs);
-    return getrecipe(IDs[2]);
-})
-.then(recipe => {
+    const recipe = await getrecipe(IDs[2]);
     console.log(recipe);
-    return getRelated('Yeabsira kassaye');
-})
-.then(recipe => {
-    console.log(recipe);
-})
-.catch(error => {
-    console.log('Error!');
-});
+    const related = await getRelated('yeabsira kassaye');
+    console.log(related);
+}
+getrecipeAW();
